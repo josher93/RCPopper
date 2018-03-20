@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.globalpaysolutions.rcpopper.ui.activities.Pop">
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:id="@+id/imgPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/img_panel"/>
+
+    <ImageView
+        android:id="@+id/bgSilver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imgPanel"
+        app:layout_constraintStart_toStartOf="@+id/imgPanel"
+        app:layout_constraintTop_toTopOf="@+id/imgPanel"
+        app:srcCompat="@drawable/ic_chest_off"/>
+
+    <ImageView
+        android:id="@+id/bgGold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bgSilver"
+        app:layout_constraintEnd_toStartOf="@+id/bgSilver"
+        app:layout_constraintTop_toTopOf="@+id/bgSilver"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_chest_off"/>
+
+    <ImageView
+        android:id="@+id/bgBronze"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bgSilver"
+        app:layout_constraintStart_toEndOf="@+id/bgSilver"
+        app:layout_constraintTop_toTopOf="@+id/bgSilver"
+        app:srcCompat="@drawable/ic_chest_off"/>
+
+    <ImageView
+        android:id="@+id/icBronze"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/bgBronze"
+        app:layout_constraintEnd_toEndOf="@+id/bgBronze"
+        app:layout_constraintStart_toStartOf="@+id/bgBronze"
+        app:layout_constraintTop_toTopOf="@+id/bgBronze"
+        app:srcCompat="@drawable/ic_bronze_marker"/>
+
+    <ImageView
+        android:id="@+id/icSilver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/bgSilver"
+        app:layout_constraintEnd_toEndOf="@+id/bgSilver"
+        app:layout_constraintStart_toStartOf="@+id/bgSilver"
+        app:layout_constraintTop_toTopOf="@+id/bgSilver"
+        app:srcCompat="@drawable/ic_silver_marker"/>
+
+    <ImageView
+        android:id="@+id/icGold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/bgGold"
+        app:layout_constraintEnd_toEndOf="@+id/bgGold"
+        app:layout_constraintStart_toStartOf="@+id/bgGold"
+        app:layout_constraintTop_toTopOf="@+id/bgGold"
+        app:srcCompat="@drawable/ic_gold_marker"/>
+
+</android.support.constraint.ConstraintLayout>

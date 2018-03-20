@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">RC Popper</string>
+
+    <!--    FACEBOOK -->
+    <string name="google_maps_key">AIzaSyAAwu3OPjmkqhZyi2KqZlWExgV3kkv7CBA</string>
+    <string name="facebook_app_id">2183511551876539</string>
+    <string name="fb_login_protocol_scheme">fb2183511551876539</string>
+    <string name="label_loading_please_wait">Cargando, por favor espere...</string>
+    <string name="title_something_went_wrong">¡Ups!...</string>
+    <string name="label_something_went_wrong_try_again">Algo salió mal, inténtalo de nuevo</string>
+    <string name="button_accept">Aceptar</string>
+    <string name="dialog_permissions_title">Permisos</string>
+    <string name="dialog_permissions_location_content">Debes proporcionar permisos a la aplicación para acceder a tu ubicación y usar la funcionalidad del mapa.</string>
+    <string name="dialog_title_activate_location">Activar Ubicación</string>
+    <string name="dialog_content_activate_location">Debes activar la ubicación para un uso correcto del mapa.</string>
+    <string name="button_retry">Reintentar</string>
+    <string name="title_delete_chest">Borrar cofre</string>
+    <string name="label_delete_chest">Haz click aquí para borrarlo</string>
+    <string name="error_removing_chest_try_again">No se pudo borrar el cofre, inténtalo de nuevo</string>
+    <string name="error_adding_chest_try_again">No se agregó el cofre, inténtalo de nuevo</string>
+
+</resources>

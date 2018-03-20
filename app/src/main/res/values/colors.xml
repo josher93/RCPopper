@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_red_recargo">#DF0024</color>
+    <color name="color_red_drak_recargo">#cc0122</color>
+    <color name="colorAccent">#DF0024</color>
+    <color name="color_timemachine_background">#1d2226</color>
+    <color name="color_white_timemachine_background">#e6e5e5</color>
+
+    <color name="color_title_recargo">#2b343f</color>
+    <color name="color_paragraph_recargo">#191e25</color>
+
+    <!--<color name="color_intro_background">#191c20</color>-->
+    <color name="color_intro_background">#acada9</color>
+    <color name="color_new_gray_background">#9c9c9b</color>
+    <color name="color_orange_background">#e45d2b</color>
+    <color name="color_map_background">#ececdd</color>
+    <color name="colo_gray_new_timemachine_2">#9c9c9c</color>
+
+    <color name="color_semitransparent_yellow">#f9fc44</color>
+    <color name="color_semitransparent_dim_yellow">#a6f9fc44</color>
+</resources>

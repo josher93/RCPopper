@@ -1,0 +1,17 @@
+<resources>
+
+
+    <style name="AppThemeFullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_red_recargo</item>
+        <item name="colorPrimaryDark">@color/color_red_drak_recargo</item>
+        <item name="colorAccent">@color/color_red_recargo</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@color/color_timemachine_background</item>
+        <item name="android:colorBackground">@color/color_timemachine_background</item>
+    </style>
+
+</resources>

@@ -1,0 +1,144 @@
+{
+  "project_info": {
+    "project_number": "764736593889",
+    "firebase_url": "https://yocomprorecarga-development.firebaseio.com",
+    "project_id": "yocomprorecarga-development",
+    "storage_bucket": "yocomprorecarga-development.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764736593889:android:77ebfe62bb78fd1b",
+        "android_client_info": {
+          "package_name": "com.globalpaysolutions.yocomprorecarga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764736593889-tin7hmff44usn4u791ahoddgs9e9pqnr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.globalpaysolutions.yocomprorecarga",
+            "certificate_hash": "83eae8bc43be72d8f75d2b307718835cbe2cd6e3"
+          }
+        },
+        {
+          "client_id": "764736593889-4jr2bcphk9lqjhl5h8ui5on665b7rert.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAwu3OPjmkqhZyi2KqZlWExgV3kkv7CBA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "764736593889-ntv66gig9ev7p5o7rbf2r0rdugsus0fn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.globalpaysolutions.RCPopper"
+              }
+            },
+            {
+              "client_id": "764736593889-4jr2bcphk9lqjhl5h8ui5on665b7rert.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764736593889:android:e612e162b72ee15f",
+        "android_client_info": {
+          "package_name": "com.globalpaysolutions.yovendorecarga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764736593889-4jr2bcphk9lqjhl5h8ui5on665b7rert.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAwu3OPjmkqhZyi2KqZlWExgV3kkv7CBA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764736593889:android:204811920dd0401b",
+        "android_client_info": {
+          "package_name": "com.globalpaysolutions.rcpopper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764736593889-6j0027tnqa122iaml495ju715th8f14q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.globalpaysolutions.rcpopper",
+            "certificate_hash": "88563bb95848222c1c4083966130b26a5820b4af"
+          }
+        },
+        {
+          "client_id": "764736593889-4jr2bcphk9lqjhl5h8ui5on665b7rert.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAwu3OPjmkqhZyi2KqZlWExgV3kkv7CBA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "764736593889-ntv66gig9ev7p5o7rbf2r0rdugsus0fn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.globalpaysolutions.RCPopper"
+              }
+            },
+            {
+              "client_id": "764736593889-4jr2bcphk9lqjhl5h8ui5on665b7rert.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
