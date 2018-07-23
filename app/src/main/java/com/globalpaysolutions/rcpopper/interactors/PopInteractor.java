@@ -45,6 +45,7 @@ public class PopInteractor implements IPopInteractor
     private static GeoQuery mGoldPointsQuery;
     private static GeoQuery mSilverPointsQuery;
     private static GeoQuery mBronzePointsQuery;
+    private static GeoQuery mWildcardPointsQuery;
 
     public PopInteractor(Context context, PopListener listener)
     {
@@ -123,6 +124,18 @@ public class PopInteractor implements IPopInteractor
         {
             ex.printStackTrace();
         }
+    }
+
+    @Override
+    public void wildcardPointsQuery(GeoLocation pLocation, double pRadius)
+    {
+        new ExecuteWildcardPointsQuery(pLocation, pRadius).execute();
+    }
+
+    @Override
+    public void wildcardPointsUpdateCriteria(GeoLocation pLocation, double pRadius)
+    {
+
     }
 
     @Override
@@ -241,6 +254,33 @@ public class PopInteractor implements IPopInteractor
                         {
                             Log.i(TAG, "Location deleted succesfully for chest " + key);
                             listener.onBronzeChestDeleteSuccess(key);
+                        }
+                        else
+                        {
+                            Log.e(TAG, "Error trying to delete location for chest " + key);
+                            listener.onChestDeleteError();
+                        }
+
+                    });
+        }
+        catch (Exception ex)
+        {
+            Log.e(TAG, "Error deleting from firebase: " + ex.getMessage());
+        }
+    }
+
+    @Override
+    public void deleteWildcardChest(String firebaseKey, PopListener listener)
+    {
+        try
+        {
+            GeofireSingleton.getInstance().getWildcardPointsRef()
+                    .removeLocation(firebaseKey, (key, error) ->
+                    {
+                        if(error == null)
+                        {
+                            Log.i(TAG, "Location deleted succesfully for chest " + key);
+                            listener.onWildcardChestDeleteSuccess(key);
                         }
                         else
                         {
@@ -393,6 +433,65 @@ public class PopInteractor implements IPopInteractor
         }
     }
 
+    @Override
+    public void insertWildcardChestData(GeoLocation geoLocation)
+    {
+        try
+        {
+            ChestData chest = new ChestData();
+            chest.setBrand("Claro");
+
+            mWildcardPointsData.push().setValue(chest, new DatabaseReference.CompletionListener()
+            {
+                @Override
+                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference)
+                {
+                    if(databaseError == null)
+                    {
+                        String key = new StringBuilder(databaseReference.getKey()).insert(0, "W").toString();
+                        mListener.onWildcardKeyDataInserted(key, geoLocation);
+                    }
+                    else
+                    {
+                        Log.e(TAG, "Error inserting Gold chest data: " + databaseError.getDetails());
+                        mListener.onWriteDataError();
+                    }
+                }
+            });
+
+
+        }
+        catch (Exception ex)
+        {
+            Log.e(TAG, "Error inserting Gold chest data: " + ex.getMessage());
+        }
+    }
+
+    @Override
+    public void insertWildcardChest(String insertedKey, GeoLocation geoLocation, PopListener listener)
+    {
+        try
+        {
+            GeofireSingleton.getInstance().getWildcardPointsRef()
+                    .setLocation(insertedKey, geoLocation, (key, error) ->
+                    {
+                        if(error == null)
+                        {
+                            listener.onWildcardInserted(key,geoLocation);
+                        }
+                        else
+                        {
+                            Log.e(TAG, "Error trying to insert location for Current Player " + key);
+                        }
+
+                    });
+        }
+        catch (Exception ex)
+        {
+            Log.e(TAG, "Location for current player could not be inserted: " + ex.getMessage());
+        }
+    }
+
     /*
     *
     *
@@ -508,6 +607,42 @@ public class PopInteractor implements IPopInteractor
         }
     };
 
+    private GeoQueryEventListener wildcardPointsListener = new GeoQueryEventListener()
+    {
+
+        @Override
+        public void onKeyEntered(final String key, GeoLocation location)
+        {
+            LatLng geoLocation = new LatLng(location.latitude, location.longitude);
+            mListener.onWildcardKeyEntered(key, geoLocation);
+        }
+
+        @Override
+        public void onKeyExited(String key)
+        {
+            mListener.onWildcardKeyExited(key);
+        }
+
+        @Override
+        public void onKeyMoved(String key, GeoLocation location)
+        {
+            Log.i(TAG, "WildcardPoint: Warning, wildcard point key moved fired!");
+        }
+
+        @Override
+        public void onGeoQueryReady()
+        {
+            mListener.onWildcardGeoQueryReady();
+            Log.i(TAG, "WildcardPoint: GeoQuery for wildcardPoint ready");
+        }
+
+        @Override
+        public void onGeoQueryError(DatabaseError error)
+        {
+            Log.e(TAG, "WildcardPoint: DatabaseError for wildcardPoint fired");
+        }
+    };
+
 
 
     /*
@@ -592,6 +727,33 @@ public class PopInteractor implements IPopInteractor
             {
                 mBronzePointsQuery = GeofireSingleton.getInstance().getBronzePointReference().queryAtLocation(geoLocation, radius);
                 mBronzePointsQuery.addGeoQueryEventListener(bronzePointsListener);
+            }
+            catch (IllegalArgumentException ex)
+            {
+                ex.printStackTrace();
+            }
+            return null;
+        }
+    }
+
+    private class ExecuteWildcardPointsQuery extends AsyncTask<Void, Void, Void>
+    {
+        GeoLocation geoLocation;
+        double radius;
+
+        ExecuteWildcardPointsQuery(GeoLocation pLocation, double pRadius)
+        {
+            this.geoLocation = pLocation;
+            this.radius = pRadius;
+        }
+
+        @Override
+        protected Void doInBackground(Void... params)
+        {
+            try
+            {
+                mWildcardPointsQuery = GeofireSingleton.getInstance().getWildcardPointsRef().queryAtLocation(geoLocation, radius);
+                mWildcardPointsQuery.addGeoQueryEventListener(wildcardPointsListener);
             }
             catch (IllegalArgumentException ex)
             {

@@ -145,7 +145,7 @@ public class AuthInteractor implements IAuthInteractor
                             {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "signInAnonymously:success");
-                                listener.onFirebaseAuthSuccess(mFirebaseAuth.getCurrentUser());
+                                     listener.onFirebaseAuthSuccess(mFirebaseAuth.getCurrentUser());
                             }
                             else
                             {

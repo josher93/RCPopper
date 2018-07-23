@@ -26,7 +26,10 @@ public interface PopView
     void addSilverPoint(MarkerData markerData, LatLng pLocation);
     void removeSilverPoint(String pKey);
     void addBronzePoint(MarkerData markerData, LatLng pLocation);
+    void addWildcardPoint(MarkerData markerData, LatLng location);
+    void removeWildcardPoint(String pKey);
     void removeBronzePoint(String pKey);
     void showToast(String string);
     void showGenericDialog(DialogContent content, DialogInterface.OnClickListener listener);
+
 }

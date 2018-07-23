@@ -50,6 +50,7 @@ public class Pop extends AppCompatActivity implements OnMapReadyCallback, PopVie
     private ImageView bgGold;
     private ImageView bgSilver;
     private ImageView bgBronze;
+    private ImageView bgWildcard;
     private GoogleMap mGoogleMap;
     private ProgressDialog mProgressDialog;
 
@@ -58,6 +59,7 @@ public class Pop extends AppCompatActivity implements OnMapReadyCallback, PopVie
     private Map<String, Marker> mGoldPointsMarkers;
     private Map<String, Marker> mSilverPointsMarkers;
     private Map<String, Marker> mBronzePointsMarkers;
+    private Map<String, Marker> mWildcardPointsMarkers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -68,12 +70,15 @@ public class Pop extends AppCompatActivity implements OnMapReadyCallback, PopVie
         bgGold = (ImageView) findViewById(R.id.bgGold);
         bgSilver = (ImageView) findViewById(R.id.bgSilver);
         bgBronze = (ImageView) findViewById(R.id.bgBronze);
+        bgWildcard = (ImageView) findViewById(R.id.bgWildcard);
 
         mPresenter = new PopPresenterImpl(this, this, this);
 
         mGoldPointsMarkers = new HashMap<>();
         mSilverPointsMarkers = new HashMap<>();
         mBronzePointsMarkers = new HashMap<>();
+        mWildcardPointsMarkers = new HashMap<>();
+
 
         mPresenter.checkSignin();
         mPresenter.setInitialViewsState();
@@ -101,6 +106,7 @@ public class Pop extends AppCompatActivity implements OnMapReadyCallback, PopVie
         bgGold.setOnClickListener(goldListener);
         bgSilver.setOnClickListener(silverListener);
         bgBronze.setOnClickListener(bronzeListener);
+        bgWildcard.setOnClickListener(wildcardListener);
     }
 
     @Override
@@ -381,6 +387,50 @@ public class Pop extends AppCompatActivity implements OnMapReadyCallback, PopVie
     }
 
     @Override
+    public void addWildcardPoint(MarkerData markerData, LatLng location)
+    {
+        try
+        {
+            Marker marker = mWildcardPointsMarkers.get(markerData.getKey());
+
+            if(marker == null)
+            {
+                marker = mGoogleMap.addMarker(new MarkerOptions().position(location)
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_wildcard_marker)));
+
+                marker.setTitle(getString(R.string.title_delete_chest));
+                marker.setSnippet(getString(R.string.label_delete_chest));
+                marker.setTag(markerData);
+
+                mWildcardPointsMarkers.put(markerData.getKey(), marker);
+            }
+        }
+        catch (Exception ex)
+        {
+            Log.e(TAG, "Bronze point couldn't be added: " + ex.getMessage());
+        }
+    }
+
+    @Override
+    public void removeWildcardPoint(String pKey)
+    {
+        try
+        {
+            Marker marker = mWildcardPointsMarkers.get(pKey);
+            marker.remove();
+            mWildcardPointsMarkers.remove(pKey);
+        }
+        catch (NullPointerException npe)
+        {
+            Log.i(TAG, "Handled: NullPointerException when trying to remove marker from map");
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
     public void onMapReady(GoogleMap googleMap)
     {
         //mPresenter.checkPermissions();
@@ -495,6 +545,15 @@ public class Pop extends AppCompatActivity implements OnMapReadyCallback, PopVie
         public void onClick(View view)
         {
             mPresenter.writeChestLocation(Constants.CHEST_TYPE_BRONZE);
+        }
+    };
+
+    private View.OnClickListener wildcardListener = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View view)
+        {
+            mPresenter.writeChestLocation(Constants.CHEST_TYPE_WILDCARD);
         }
     };
 

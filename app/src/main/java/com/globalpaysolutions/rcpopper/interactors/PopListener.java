@@ -34,5 +34,13 @@ public interface PopListener
     void onBronzeInserted(String key, GeoLocation geoLocation);
     void onBronzeChestDeleteSuccess(String key);
 
+    //GeoFire WildcardPoints
+    void onWildcardKeyEntered(String pKey, LatLng pLocation);
+    void onWildcardKeyExited(String pKey);
+    void onWildcardGeoQueryReady();
+    void onWildcardKeyDataInserted(String insertedKey, GeoLocation geoLocation);
+    void onWildcardInserted(String key, GeoLocation geoLocation);
+    void onWildcardChestDeleteSuccess(String key);
+
     void onWriteDataError();
 }

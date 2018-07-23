@@ -18,15 +18,20 @@ public interface IPopInteractor
     void silverPointsUpdateCriteria(GeoLocation pLocation, double pRadius);
     void bronzePointsQuery(GeoLocation pLocation, double pRadius);
     void bronzePointsUpdateCriteria(GeoLocation pLocation, double pRadius);
+    void wildcardPointsQuery(GeoLocation pLocation, double pRadius);
+    void wildcardPointsUpdateCriteria(GeoLocation pLocation, double pRadius);
     void insertGoldChestData(GeoLocation geoLocation);
     void insertGoldChest(String key, GeoLocation geoLocation, PopListener listener);
     void insertSilverChestData(GeoLocation geoLocation);
     void insertSilverChest(String key, GeoLocation geoLocation, PopListener listener);
     void insertBronzeChestData(GeoLocation geoLocation);
     void insertBronzeChest(String insertedKey, GeoLocation geoLocation, PopListener listener);
+    void insertWildcardChestData(GeoLocation geoLocation);
+    void insertWildcardChest(String insertedKey, GeoLocation geoLocation, PopListener listener);
     void deleteGoldChest(String firebaseKey, PopListener listener);
     void deleteSilverChest(String firebaseKey, PopListener listener);
     void deleteBronzeChest(String firebaseKey, PopListener listener);
+    void deleteWildcardChest(String firebaseKey, PopListener listener);
     void detachFirebaseListeners();
 
 

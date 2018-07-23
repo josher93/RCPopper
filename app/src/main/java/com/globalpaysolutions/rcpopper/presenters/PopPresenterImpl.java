@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -131,6 +132,7 @@ public class PopPresenterImpl implements IPopPresenter, LocationCallback, PopLis
         mInteractor.goldPointsQuery(location, Constants.GOLD_CHESTS_QUERY_RADIUS_KM);
         mInteractor.silverPointsQuery(location, Constants.SILVER_CHESTS_QUERY_RADIUS_KM);
         mInteractor.bronzePointsQuery(location, Constants.BRONZE_CHESTS_QUERY_RADIUS_KM);
+        mInteractor.wildcardPointsQuery(location, Constants.GOLD_CHESTS_QUERY_RADIUS_KM);
     }
 
     @Override
@@ -140,6 +142,7 @@ public class PopPresenterImpl implements IPopPresenter, LocationCallback, PopLis
         mInteractor.goldPointsUpdateCriteria(location, Constants.GOLD_CHESTS_QUERY_RADIUS_KM);
         mInteractor.silverPointsUpdateCriteria(location, Constants.SILVER_CHESTS_QUERY_RADIUS_KM);
         mInteractor.bronzePointsUpdateCriteria(location, Constants.BRONZE_CHESTS_QUERY_RADIUS_KM);
+        mInteractor.wildcardPointsUpdateCriteria(location, Constants.GOLD_CHESTS_QUERY_RADIUS_KM);
     }
 
     @Override
@@ -161,6 +164,9 @@ public class PopPresenterImpl implements IPopPresenter, LocationCallback, PopLis
                         break;
                     case Constants.CHEST_TYPE_BRONZE:
                         mInteractor.insertBronzeChestData(geoLocation);
+                        break;
+                    case Constants.CHEST_TYPE_WILDCARD:
+                        mInteractor.insertWildcardChestData(geoLocation);
                         break;
                 }
             }
@@ -217,6 +223,9 @@ public class PopPresenterImpl implements IPopPresenter, LocationCallback, PopLis
                     break;
                 case Constants.CHEST_TYPE_BRONZE:
                     mInteractor.deleteBronzeChest(firebaseKey, this);
+                    break;
+                case Constants.CHEST_TYPE_WILDCARD:
+                    mInteractor.deleteWildcardChest(firebaseKey, this);
                     break;
             }
 
@@ -413,6 +422,50 @@ public class PopPresenterImpl implements IPopPresenter, LocationCallback, PopLis
     public void onBronzeChestDeleteSuccess(String key)
     {
         mView.removeBronzePoint(key);
+    }
+
+    @Override
+    public void onWildcardKeyEntered(String pKey, LatLng pLocation)
+    {
+        MarkerData markerData = new MarkerData();
+        markerData.setKey(pKey);
+        markerData.setType(Constants.CHEST_TYPE_WILDCARD);
+        mView.addWildcardPoint(markerData, pLocation);
+    }
+
+    @Override
+    public void onWildcardKeyExited(String pKey)
+    {
+        mView.removeWildcardPoint(pKey);
+    }
+
+    @Override
+    public void onWildcardGeoQueryReady()
+    {
+
+    }
+
+    @Override
+    public void onWildcardKeyDataInserted(String insertedKey, GeoLocation geoLocation)
+    {
+        mInteractor.insertWildcardChest(insertedKey, geoLocation, this);
+    }
+
+    @Override
+    public void onWildcardInserted(String key, GeoLocation geoLocation)
+    {
+        LatLng location = new LatLng(geoLocation.latitude, geoLocation.longitude);
+
+        MarkerData markerData = new MarkerData();
+        markerData.setKey(key);
+        markerData.setType(Constants.CHEST_TYPE_WILDCARD);
+        mView.addWildcardPoint(markerData, location);
+    }
+
+    @Override
+    public void onWildcardChestDeleteSuccess(String key)
+    {
+        mView.removeWildcardPoint(key);
     }
 
     @Override

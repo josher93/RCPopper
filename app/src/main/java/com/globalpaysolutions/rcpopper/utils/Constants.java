@@ -15,4 +15,5 @@ public class Constants
     public static final String CHEST_TYPE_GOLD = "gold";
     public static final String CHEST_TYPE_SILVER = "silver";
     public static final String CHEST_TYPE_BRONZE = "bronze";
+    public static final String CHEST_TYPE_WILDCARD = "Wildcard";
 }
